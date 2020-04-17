@@ -1,24 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
+import store from './redux/store';
 import './App.css';
+import {increment, decrement} from './redux/contador/contador-actions';
 
 function App() {
+  let {contadorReducer} = store.getState();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App">      
+      {contadorReducer}
+      <button onClick={() => store.dispatch(increment())}>+</button>
+      <button onClick={() => store.dispatch(decrement())}>-</button>
     </div>
   );
 }
